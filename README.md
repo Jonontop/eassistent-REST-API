@@ -94,4 +94,4 @@ def easistent_current_hour():
 print(eassistent())
 ```
 
-- koda je bila v mojem prostem času
+- koda je bila narejen v mojem prostem času
