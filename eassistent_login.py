@@ -11,7 +11,7 @@ calendar_url = 'https://www.easistent.com/webapp#/calendar'
 
 # User credentials
 username = 'jon.pecar@gmail.com'
-password = 'Vegova4.'
+password = 'geslo'
 
 # Additional parameters
 pin = ''
