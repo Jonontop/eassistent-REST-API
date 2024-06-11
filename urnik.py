@@ -2,17 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 import time
 
-urnik = {
-    "1": 7.30,
-    "2": 8.20,
-    "3": 9.10,
-    "4": 10.00,
-    "5": 11.05,
-    "6": 11.55,
-    "7": 12.45,
-    "8": 13.35,
-    "9": 14.25
-}
 def curent_date():
     month = f"{time.gmtime()[1]}"
     if len(month) == 1:
@@ -20,7 +9,7 @@ def curent_date():
     day = f"{time.gmtime()[2]}"
     if len(day) == 1:
         day = f"0{time.gmtime()[2]}"
-
+    return f"2024-06-12"
     return f"{time.gmtime()[0]}-{month}-{day}"
 # returns the current date in the format "YYYY-MM-DD"
 
@@ -46,9 +35,10 @@ def eassistent():
 
     for i in range(1, 10):
         results = soup.find_all("td", id=f"ednevnik-seznam_ur_teden-td-{i}-{curent_date()}") # Find all the subjects for the current day
-
+        print(type(results))
         for j in results:
             try:
+                print(j)
                 name = j.find("td", class_="text14 bold").text # Name of the subject
                 prof = j.find("div", class_="text11").text.index(",") # Index of the comma in the text
                 prof = j.find("div", class_="text11").text[0:prof] # Name of the professor
@@ -81,5 +71,7 @@ def easistent_current_hour():
             return i
     return len(thresholds) + 1
 
-print(eassistent())
+urnik = eassistent()
+for i in urnik:
+    print(i)
 
