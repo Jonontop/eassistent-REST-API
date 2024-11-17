@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import time
 
 # returns the current date in the format "YYYY-MM-DD"
-curent_date = lambda: time.strftime("%Y-%m-%d", time.gmtime())
+current_date = lambda: time.strftime("%Y-%m-%d", time.gmtime())
 
 # returns the current time in the format "HH:MM"
 current_time = lambda: float(time.strftime("%H.%M", time.gmtime()))
@@ -17,7 +17,7 @@ def eassistent():
     print()
 
     for i in range(1, 10):
-        results = soup.find_all("td", id=f"ednevnik-seznam_ur_teden-td-{i}-{curent_date()}")  # Find all the subjects for the current day
+        results = soup.find_all("td", id=f"ednevnik-seznam_ur_teden-td-{i}-{current_date()}")  # Find all the subjects for the current day
         print(type(results))
         for j in results:
             try:
