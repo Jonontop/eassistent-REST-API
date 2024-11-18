@@ -40,24 +40,17 @@ response = session.post(login_url, data=payload)
 # Check the response
 if response.ok:
     data = response.json()
-    if data['status'] == 'ok':
-        print('Login successful!')
-
-        # Check if the response URL matches the main URL
-        if response.url.startswith(main_url):
-            print('Redirected to the main page.')
-
-            # Access the calendar page using the session cookie
-            calendar_response = session.get(calendar_url)
-            if calendar_response.ok:
-                print('Accessed the calendar page successfully.')
-                # Print the HTML content of the calendar page
-                print(calendar_response.text)
-            else:
-                print('Failed to access the calendar page:', calendar_response.status_code)
+    if data['status'] == 'ok' and response.url.startswith(main_url):
+        print('Login successful.')
+        # Access the calendar page using the session cookie
+        calendar_response = session.get(calendar_url)
+        if calendar_response.ok:
+            print('Accessed the calendar page successfully.')
+            # Print the HTML content of the calendar page
+            print(calendar_response.text)
         else:
-            print('Unexpected redirection after login:', response.url)
+            print('Failed to access the calendar page:', calendar_response.status_code)
     else:
-        print('Login failed:', data['message'])  # Print the error message
+        print('Unexpected redirection after login:', response.url)
 else:
     print('Failed to connect to the server.')
